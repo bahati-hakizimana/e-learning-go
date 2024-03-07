@@ -7,6 +7,7 @@ import (
     "github.com/joho/godotenv"
     "gorm.io/driver/mysql"
     "gorm.io/gorm"
+    "github.com/bahati-hakizimana/e-learning-backend/models"
 )
 
 var DB *gorm.DB
@@ -30,4 +31,8 @@ func Connect() {
 	}
 
     DB = database
+    database.AutoMigrate(
+        &models.User{},
+        
+    )
 }

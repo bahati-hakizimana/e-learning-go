@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/bahati-hakizimana/e-learning-backend/database"
+	"github.com/bahati-hakizimana/e-learning-backend/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 )
@@ -23,5 +24,6 @@ func main() {
 
 	port:=os.Getenv("PORT")
     app:=fiber.New()
+	routes.Setup(app)
 	app.Listen(":"+port)
 }
