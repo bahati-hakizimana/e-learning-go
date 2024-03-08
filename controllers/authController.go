@@ -72,4 +72,25 @@ func Register(c *fiber.Ctx) error{
 			"user":user,
 			"message" :"Account created successful",
 		})
+
+		//info@easyandpossible.org 
+}
+
+func Login(c *fiber.Ctx) error {
+
+	var  data map[string]string
+	if err:=c.BodyParser(&data);err!=nil{
+		fmt.Println("Un able to parser body")
+	}
+
+	var user models.User
+	database.DB.Where("email=?", data["email"]).First(&user)
+
+	if user.Id==0{
+		c.Status(404)
+		return c.JSON(fiber.Map{
+			"message" : "Email doesn't exist, kindly create an account",
+		})
+	}
+
 }
